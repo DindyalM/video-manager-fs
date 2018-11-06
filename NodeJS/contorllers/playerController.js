@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", (rep,res) => {
+router.put("/:id", (req,res) => {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with id: ${req.params.id}`);
     
@@ -68,8 +68,8 @@ router.delete('/:id',(req,res) => {
     if(!ObjectId.isValid(req.params.id))
     return res.status(400).send(`no player record exists with that id + ${req.params.id}`);  
 
-    Player.findByIdAndRemove(rep.params.id, (err,docs) => {
-        if(!err) {res.send(doc); }
+    Player.findByIdAndRemove(req.params.id, (err,doc) => {
+        if(!err) { res.send(doc); }
         else { console.log("Error in player delete" + JSON.stringify(err,undefined,2))}
     });
 });
