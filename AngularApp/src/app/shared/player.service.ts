@@ -13,6 +13,7 @@ import { Player } from './player.model';
   providedIn: 'root'
 })
 export class PlayerService {
-
+  selectedPlayer: Player;
+  player: Player[];
   constructor() { }
 }
