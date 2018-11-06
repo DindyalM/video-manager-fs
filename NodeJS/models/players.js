@@ -6,7 +6,7 @@ var Player = mongoose.model('Player', {
     score: {type: Number}, 
     time:{type: Number},
     games_played:{type: Number},
-    Status: {type: String}
+    status: {type: String}
 });
 
 module.exports = { Player };
