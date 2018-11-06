@@ -1,7 +1,7 @@
 const express = require('express');
 var router = express.Router(); //import router from express
 var ObjectId = require('mongoose').Types.ObjectId;
-var jsonerr = JSON.stringify(err,undefined,2);
+
 
 var { Player } = require('../models/players');
 
@@ -9,7 +9,7 @@ var { Player } = require('../models/players');
 router.get('/', (req, res) => {
     Player.find((err,docs) =>{
         if (!err) { res.send(docs); }
-        else{console.log("Error" + jsonerr); }
+        else{console.log("Error" + JSON.stringify(err,undefined,2)); }
     }); //retrives all players from  players collection
 });
 
@@ -20,7 +20,7 @@ router.get("/:id", (req , res) => {
     
         Player.findById(req.params.id, (err,doc) =>{
         if(!err){ res.send(doc); }
-        else{ console.log('error in retriving player' + jsonerr); }
+        else{ console.log('error in retriving player' + JSON.stringify(err,undefined,2)); }
     });
 });
 
@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
 
     ply.save((err,docs) => {
         if(!err){ res.send(docs); }
-        else {console.log("Error in player save"+ jsonerr);}
+        else {console.log("Error in player save"+ JSON.stringify(err,undefined,2));}
     }); //inserts record into ply object
 });
 
@@ -59,7 +59,7 @@ router.put("/:id", (rep,res) => {
     //new = ture means doc will contain new value
     Player.findByIdAndUpdate(req.params.id, { $set: ply }, { new: true }, (err,doc) => {
         if(!err){ res.send(doc); }
-        else{console.log("Error in updating player"+ jsonerr);}
+        else{console.log("Error in updating player"+ JSON.stringify(err,undefined,2));}
     });
 });
 
@@ -70,7 +70,7 @@ router.delete('/:id',(req,res) => {
 
     Player.findByIdAndRemove(rep.params.id, (err,docs) => {
         if(!err) {res.send(doc); }
-        else { console.log("Error in player delete" + jsonerr)}
+        else { console.log("Error in player delete" + JSON.stringify(err,undefined,2))}
     });
 });
 
